@@ -9,7 +9,7 @@ namespace MOT_Reminder
         {
             DataTable data = new DataTable();
             OleDbConnection connection = new OleDbConnection(
-            @"Provider=VFPOLEDB.1;Data Source=C:\Users\Sam\Desktop\car.dbf");
+            @"Provider=VFPOLEDB.1;Data Source=C:\GarageGSSL\garage\data\car.dbf");
 
             connection.Open();
 
