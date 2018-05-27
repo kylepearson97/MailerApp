@@ -15,6 +15,7 @@ namespace MOT_Reminder
         public Form1()
         {
             InitializeComponent();
+            dataGridView1.DataSource = MOT_Reminder.Dbf.getData();
         }
     }
 }
