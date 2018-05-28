@@ -22,8 +22,8 @@ namespace MOT_Reminder
                 return data;
         }
 
-        ///You 
-        public static DataTable getCustomerData(string ccode)
+        
+        public static DataRow getCustomerData(string ccode)
         {
             DataTable data = new DataTable();
             OleDbConnection connection = new OleDbConnection(
@@ -31,15 +31,15 @@ namespace MOT_Reminder
             connection.Open();
             if (connection.State == ConnectionState.Open)
             {
-                string mySQL = string.Format("select * from customer WHERE CCode ='{0}'",ccode);  // dbf table name
+                string mySQL = string.Format("select mobile, email from customer WHERE CCode ='{0}'",ccode);  // dbf table name
                 OleDbCommand MyQuery = new OleDbCommand(mySQL, connection);
                 OleDbDataAdapter DA = new OleDbDataAdapter(MyQuery);
                 DA.Fill(data);
                 connection.Close();
             }
-            return data;
+            return data.Rows[0];
         }
-        public static DataRow[] Query()
+        public static DataRow[] motQuery()
         {
             DateTime now = DateTime.Now;
             string nnow = now.ToString("MM/dd/yyyy");
@@ -47,5 +47,13 @@ namespace MOT_Reminder
             DataRow[] result = getCarData().Select(String.Format("mot_duen <= #{0}# AND mot_duen >= #{1}# AND CCode <> ''", month, nnow));
             return result;
         }
+
+        //public static DataTable customerContact()
+        //{
+        //    foreach (DataRow row in motQuery())
+        //    {
+
+        //    }
+        //}
 }
 }
