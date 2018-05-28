@@ -20,9 +20,7 @@ namespace MOT_Reminder
                 {
             DataTable display = data.CopyToDataTable();
                 dataGridView1.DataSource = display;
-            }
-
-            
+            }          
         }
     }
 }

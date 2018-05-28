@@ -13,7 +13,7 @@ namespace MOT_Reminder
             connection.Open();
             if (connection.State == ConnectionState.Open)
             {
-                string mySQL = "select * from car";  // dbf table name
+                string mySQL = "select reg, ccode, mot_duen from car";  // dbf table name
                 OleDbCommand MyQuery = new OleDbCommand(mySQL, connection);
                 OleDbDataAdapter DA = new OleDbDataAdapter(MyQuery);
                 DA.Fill(data);
@@ -22,7 +22,8 @@ namespace MOT_Reminder
                 return data;
         }
 
-        public static DataTable getCustomerData()
+        ///You 
+        public static DataTable getCustomerData(string ccode)
         {
             DataTable data = new DataTable();
             OleDbConnection connection = new OleDbConnection(
@@ -30,7 +31,7 @@ namespace MOT_Reminder
             connection.Open();
             if (connection.State == ConnectionState.Open)
             {
-                string mySQL = "select * from customer";  // dbf table name
+                string mySQL = string.Format("select * from customer WHERE CCode ='{0}'",ccode);  // dbf table name
                 OleDbCommand MyQuery = new OleDbCommand(mySQL, connection);
                 OleDbDataAdapter DA = new OleDbDataAdapter(MyQuery);
                 DA.Fill(data);
