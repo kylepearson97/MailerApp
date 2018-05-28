@@ -15,7 +15,14 @@ namespace MOT_Reminder
         public Form1()
         {
             InitializeComponent();
-            dataGridView1.DataSource = MOT_Reminder.Dbf.getData();
+            DataRow[] data = Dbf.Query();
+            if (data.Length > 0)
+                {
+            DataTable display = data.CopyToDataTable();
+                dataGridView1.DataSource = display;
+            }
+
+            
         }
     }
 }
