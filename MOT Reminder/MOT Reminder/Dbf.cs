@@ -48,12 +48,19 @@ namespace MOT_Reminder
             return result;
         }
 
-        //public static DataTable customerContact()
-        //{
-        //    foreach (DataRow row in motQuery())
-        //    {
-
-        //    }
-        //}
+        public static void addToAppDatabase()
+        {
+            DataRow[] data = Dbf.motQuery();
+            foreach (DataRow row in data)
+            {
+                DataRow custinfo = Dbf.getCustomerData(row[1].ToString());
+                string custmo = custinfo["mobile"].ToString();
+                if (custmo.Contains("0"))
+                {
+                    // Change this to add to database with the stuff we need
+                    Console.WriteLine(custmo);
+                }
+            }
+        }
 }
 }

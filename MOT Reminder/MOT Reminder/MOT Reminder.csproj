@@ -112,10 +112,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="message.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="message_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>message.mdf</DependentUpon>
     </Content>
   </ItemGroup>

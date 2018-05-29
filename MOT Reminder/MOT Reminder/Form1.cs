@@ -21,18 +21,6 @@ namespace MOT_Reminder
             DataTable display = data.CopyToDataTable();
                 dataGridView1.DataSource = display;
             }
-            DataTable customers = new DataTable();
-            customers.Columns.Add("reg",typeof(string));
-            customers.Columns.Add("CCode", typeof(string));
-            customers.Columns.Add("mot_duen", typeof(DateTime));
-            customers.Columns.Add("mobile", typeof(string));
-            customers.Columns.Add("email", typeof(string));
-            customers.Columns.Add("entered", typeof(DateTime));
-            foreach (DataRow row in data)
-                {
-                DataRow custinfo = Dbf.getCustomerData(row[1].ToString());
-                    Console.WriteLine(custinfo["mobile"]);
-                }
                       
         }
 
