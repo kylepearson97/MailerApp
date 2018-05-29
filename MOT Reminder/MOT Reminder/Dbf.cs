@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
+using System.Windows.Forms;
 namespace MOT_Reminder
 {
     static class Dbf
@@ -50,6 +51,7 @@ namespace MOT_Reminder
 
         public static void addToAppDatabase()
         {
+            messageDataSet messageData = new messageDataSet();
             DataRow[] data = Dbf.motQuery();
             foreach (DataRow row in data)
             {
@@ -59,6 +61,22 @@ namespace MOT_Reminder
                 {
                     // Change this to add to database with the stuff we need
                     Console.WriteLine(custmo);
+                    DataRow newrow = messageData.Table.NewRow();
+                    newrow["reg"] = row[0].ToString();
+                    newrow["ccode"] = row[1].ToString();
+                    newrow["mot_duen"] = DateTime.Parse(row[2].ToString());
+                    newrow["mobile"] = custmo;
+                    newrow["email"] = "NA";
+                    newrow["entered"] = DateTime.Now;
+                    newrow["checkmessage"] = false;
+                    //try { 
+                    messageData.Table.Rows.Add(newrow);
+                    messageData.Table.AcceptChanges();
+                   // }
+                    //catch
+                    //{
+                     //   break;
+                   // }
                 }
             }
         }

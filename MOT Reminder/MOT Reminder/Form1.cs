@@ -21,10 +21,11 @@ namespace MOT_Reminder
             DataTable display = data.CopyToDataTable();
                 dataGridView1.DataSource = display;
             }
+            Dbf.addToAppDatabase();
                       
         }
 
-        private void tableBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        public void tableBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
             this.tableBindingSource.EndEdit();
