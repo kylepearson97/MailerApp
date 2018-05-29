@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 namespace MOT_Reminder
 {
     static class Dbf
@@ -50,11 +51,16 @@ namespace MOT_Reminder
             return result;
         }
 
-        public static DataRow[] addToAppDatabase()
+        public static void addToAppDatabase()
         {
-            messageDataSet messageData = new messageDataSet();
+
             DataRow[] data = Dbf.motQuery();
             List<DataRow> newrows = new List<DataRow>();
+            var connectionstring = Properties.Settings.Default.messageConnectionString;
+            SqlConnection connection = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            connection.ConnectionString = connectionstring;
+            connection.Open();
             foreach (DataRow row in data)
             {
                 DataRow custinfo = Dbf.getCustomerData(row[1].ToString());
@@ -62,20 +68,21 @@ namespace MOT_Reminder
                 if (custmo.Contains("0"))
                 {
                     
-                    DataRow newrow = messageData.Table.NewRow();
-                    newrow["reg"] = row[0].ToString().Trim();
-                    newrow["ccode"] = row[1].ToString().Trim();
-                    newrow["mot_duen"] = DateTime.Parse(row[2].ToString());
-                    newrow["mobile"] = custmo.Trim();
-                    newrow["email"] = "NA";
-                    newrow["entered"] = DateTime.Now;
-                    newrow["checkmessage"] =  false;
-                    newrows.Add(newrow);                                  
+
+                    string reg = row[0].ToString().Trim();
+                    string ccode = row[1].ToString().Trim();
+                    string mot = DateTime.Parse(row[2].ToString()).ToShortDateString();
+                    string mobile = custmo.Trim();
+                    string email = "NA";
+                    string now = DateTime.Now.ToShortDateString();
+                    bool txted =  false;
+                    string sql = string.Format("INSERT INTO [dbo].[Table] (reg, CCode, mot_duen, mobile, email, entered, checkmessage) VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6})", reg, ccode, mot, mobile, email, now, txted);
+                    cmd = new SqlCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
                 }
 
             }
             
-            return newrows.ToArray();
         }
 
 

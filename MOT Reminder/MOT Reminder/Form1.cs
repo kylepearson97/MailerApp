@@ -35,13 +35,7 @@ namespace MOT_Reminder
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // DOES NOT WORK
-             DataRow[] newrows = Dbf.addToAppDatabase();
-            foreach (DataRow row in newrows)
-            {
-                this.messageDataSet.Table.ImportRow(row);
-            }
-            this.tableTableAdapter.Update(this.messageDataSet.Table);
+            Dbf.addToAppDatabase();
             this.tableTableAdapter.Fill(this.messageDataSet.Table);
 
         }
