@@ -21,7 +21,7 @@ namespace MOT_Reminder
             DataTable display = data.CopyToDataTable();
                 dataGridView1.DataSource = display;
             }
-            Dbf.addToAppDatabase();
+           
                       
         }
 
@@ -35,7 +35,13 @@ namespace MOT_Reminder
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'messageDataSet.Table' table. You can move, or remove it, as needed.
+            // DOES NOT WORK
+             DataRow[] newrows = Dbf.addToAppDatabase();
+            foreach (DataRow row in newrows)
+            {
+                this.messageDataSet.Table.ImportRow(row);
+            }
+            this.tableTableAdapter.Update(this.messageDataSet.Table);
             this.tableTableAdapter.Fill(this.messageDataSet.Table);
 
         }

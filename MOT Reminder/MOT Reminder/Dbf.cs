@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Windows.Forms;
+using System.Collections.Generic;
 namespace MOT_Reminder
 {
     static class Dbf
@@ -49,36 +50,34 @@ namespace MOT_Reminder
             return result;
         }
 
-        public static void addToAppDatabase()
+        public static DataRow[] addToAppDatabase()
         {
             messageDataSet messageData = new messageDataSet();
             DataRow[] data = Dbf.motQuery();
+            List<DataRow> newrows = new List<DataRow>();
             foreach (DataRow row in data)
             {
                 DataRow custinfo = Dbf.getCustomerData(row[1].ToString());
                 string custmo = custinfo["mobile"].ToString();
                 if (custmo.Contains("0"))
                 {
-                    // Change this to add to database with the stuff we need
-                    Console.WriteLine(custmo);
+                    
                     DataRow newrow = messageData.Table.NewRow();
-                    newrow["reg"] = row[0].ToString();
-                    newrow["ccode"] = row[1].ToString();
+                    newrow["reg"] = row[0].ToString().Trim();
+                    newrow["ccode"] = row[1].ToString().Trim();
                     newrow["mot_duen"] = DateTime.Parse(row[2].ToString());
-                    newrow["mobile"] = custmo;
+                    newrow["mobile"] = custmo.Trim();
                     newrow["email"] = "NA";
                     newrow["entered"] = DateTime.Now;
-                    newrow["checkmessage"] = false;
-                    //try { 
-                    messageData.Table.Rows.Add(newrow);
-                    messageData.Table.AcceptChanges();
-                   // }
-                    //catch
-                    //{
-                     //   break;
-                   // }
+                    newrow["checkmessage"] =  false;
+                    newrows.Add(newrow);                                  
                 }
+
             }
+            
+            return newrows.ToArray();
         }
+
+
 }
 }
