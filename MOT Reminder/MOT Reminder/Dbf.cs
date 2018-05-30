@@ -55,30 +55,43 @@ namespace MOT_Reminder
         {
 
             DataRow[] data = Dbf.motQuery();
-            List<DataRow> newrows = new List<DataRow>();
             var connectionstring = Properties.Settings.Default.messageConnectionString;
             SqlConnection connection = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             connection.ConnectionString = connectionstring;
             connection.Open();
+            Console.WriteLine(connection.Database.Length);
             foreach (DataRow row in data)
             {
                 DataRow custinfo = Dbf.getCustomerData(row[1].ToString());
                 string custmo = custinfo["mobile"].ToString();
                 if (custmo.Contains("0"))
                 {
-                    
-
                     string reg = row[0].ToString().Trim();
                     string ccode = row[1].ToString().Trim();
-                    string mot = DateTime.Parse(row[2].ToString()).ToShortDateString();
+                    DateTime mot = DateTime.Parse(row[2].ToString());
                     string mobile = custmo.Trim();
                     string email = "NA";
-                    string now = DateTime.Now.ToShortDateString();
+                    DateTime now = DateTime.Now;
                     bool txted =  false;
-                    string sql = string.Format("INSERT INTO [dbo].[Table] (reg, CCode, mot_duen, mobile, email, entered, checkmessage) VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6})", reg, ccode, mot, mobile, email, now, txted);
-                    cmd = new SqlCommand(sql, connection);
-                    cmd.ExecuteNonQuery();
+                    string sql = "INSERT INTO[dbo].[Table]([reg], [CCode], [mot_duen], [mobile], [email], [entered], [checkmessage]) VALUES(@reg, @CCode, @mot_duen, @mobile, @email, @entered, @checkmessage);";
+        cmd = new SqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@reg",reg);
+                    cmd.Parameters.AddWithValue("@CCode",ccode);
+                    cmd.Parameters.AddWithValue("@mot_duen",mot);
+                    cmd.Parameters.AddWithValue("@mobile",mobile);
+                    cmd.Parameters.AddWithValue("@email",email);
+                    cmd.Parameters.AddWithValue("@entered",now);
+                    cmd.Parameters.AddWithValue("@checkmessage",txted);
+                    Console.WriteLine(reg);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch 
+                    {
+                        
+                    }
                 }
 
             }
