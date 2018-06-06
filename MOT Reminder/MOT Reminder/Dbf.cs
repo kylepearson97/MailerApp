@@ -86,7 +86,7 @@ namespace MOT_Reminder
                     {
                         cmd.ExecuteNonQuery();
                     }
-                    catch (SqlException e)
+                    catch (SqlException )
                     {
                         Console.WriteLine("Record Already In Database");
                     }
