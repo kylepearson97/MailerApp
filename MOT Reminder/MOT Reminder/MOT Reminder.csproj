@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppDatabase.cs" />
     <Compile Include="Dbf.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

@@ -60,7 +60,6 @@ namespace MOT_Reminder
             SqlCommand cmd = new SqlCommand();
             connection.ConnectionString = connectionstring;
             connection.Open();
-            Console.WriteLine(connection.Database.Length);
             foreach (DataRow row in data)
             {
                 DataRow custinfo = Dbf.getCustomerData(row[1].ToString());
@@ -83,14 +82,13 @@ namespace MOT_Reminder
                     cmd.Parameters.AddWithValue("@email",email);
                     cmd.Parameters.AddWithValue("@entered",now);
                     cmd.Parameters.AddWithValue("@checkmessage",txted);
-                    Console.WriteLine(reg);
                     try
                     {
                         cmd.ExecuteNonQuery();
                     }
-                    catch 
+                    catch (SqlException e)
                     {
-                        
+                        Console.WriteLine("Record Already In Database");
                     }
                 }
 

@@ -16,12 +16,16 @@ namespace MOT_Reminder
         {
             InitializeComponent();
             Dbf.addToAppDatabase();
-           
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            foreach (DataRow row in AppDatabase.CustomersToText())
+            {
+                AppDatabase.updateMessage(row["reg"].ToString());
+            }
         }
     }
 }
