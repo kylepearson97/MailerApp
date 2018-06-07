@@ -41,5 +41,16 @@ namespace MOT_Reminder
             cmd.Parameters.AddWithValue("@val", true);
             cmd.ExecuteNonQuery();
         }
+        public static void DeleteOld()
+        {
+            SqlConnection connection = new SqlConnection(ConString);
+            connection.Open();
+            SqlCommand cmd = new SqlCommand();
+            string sql = "DELETE FROM dbo.[Table] WHERE entered < GETDATE()- 60";
+            cmd = new SqlCommand(sql, connection);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
     }
+
 }

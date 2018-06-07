@@ -17,19 +17,17 @@ namespace MOT_Reminder
         public Form1()
         {
             InitializeComponent();
-            Dbf.addToAppDatabase();
-
+            this.Text = "SMS Sender";
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'messageDataSet.Table' table. You can move, or remove it, as needed.
-            this.tableTableAdapter.Fill(this.messageDataSet.Table);
-
+        {                   
+            dataGridView1.DataSource = AppDatabase.Customers();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int i = 0;
             foreach (DataRow row in AppDatabase.CustomersToText())
             {
                 string mobile = row["mobile"].ToString().Trim().Substring(1, 10);
@@ -40,14 +38,27 @@ namespace MOT_Reminder
                 if (link.Success)
                 {
                     Console.WriteLine("Message ID {0} has been successfully sent", link.Id);
+                    richTextBox1.AppendText(Environment.NewLine + string.Format("Message ID {0} has been successfully sent", link.Id));
+                    AppDatabase.updateMessage(row["reg"].ToString());
                 }
                 else
                 {
-                    Console.WriteLine("Message was not sent due to following exception: {0}", link.ClientException.Message);
+                    Console.WriteLine(Environment.NewLine + "Message was not sent due to following exception: {0}", link.ClientException.Message);
+                    richTextBox1.AppendText(string.Format("Message was not sent due to following exception: {0} \n", link.ClientException.Message));
                 }
-                Console.WriteLine();
+                i++;
+            }
+            if (i < 1)
+            {
+                richTextBox1.AppendText("Nobody to message today!");
+            }
+            else
+            {
+                richTextBox1.AppendText(Environment.NewLine + "Finished!");
             }
         }
+
+
     }
 }
 

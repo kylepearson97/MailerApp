@@ -16,7 +16,9 @@ namespace MOT_Reminder
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            AppDatabase.DeleteOld();
+            Dbf.addToAppDatabase();           
+            Application.Run(new Form1());         
         }
     }
 }
