@@ -18,6 +18,7 @@ namespace MOT_Reminder
         {
             InitializeComponent();
             this.Text = "SMS Sender";
+            Console.WriteLine(AppDatabase.ConString);
         }
 
         private void Form1_Load(object sender, EventArgs e)
