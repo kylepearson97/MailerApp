@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOT Reminder", "MOT Reminder\MOT Reminder.csproj", "{372940ED-F7BF-478B-AD13-439F2362B653}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Speedway MOT Reminder", "Speedway MOT Reminder\Speedway MOT Reminder.vdproj", "{1DBDBD9B-25A0-4DF8-B656-56D52A5E859F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Speedway App Installer", "Speedway App Installer\Speedway App Installer.vdproj", "{A5D4009C-C180-496C-96CC-C64A610F5CA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +29,15 @@ Global
 		{1DBDBD9B-25A0-4DF8-B656-56D52A5E859F}.Debug|x86.ActiveCfg = Debug
 		{1DBDBD9B-25A0-4DF8-B656-56D52A5E859F}.Release|Any CPU.ActiveCfg = Release
 		{1DBDBD9B-25A0-4DF8-B656-56D52A5E859F}.Release|x86.ActiveCfg = Release
+		{A5D4009C-C180-496C-96CC-C64A610F5CA8}.Debug|Any CPU.ActiveCfg = Debug
+		{A5D4009C-C180-496C-96CC-C64A610F5CA8}.Debug|x86.ActiveCfg = Debug
+		{A5D4009C-C180-496C-96CC-C64A610F5CA8}.Release|Any CPU.ActiveCfg = Release
+		{A5D4009C-C180-496C-96CC-C64A610F5CA8}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EAA14F5E-68D2-4019-B2B0-26835C22F271}
 	EndGlobalSection
 EndGlobal
