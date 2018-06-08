@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOT Reminder", "MOT Reminder\MOT Reminder.csproj", "{372940ED-F7BF-478B-AD13-439F2362B653}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Speedway App Installer", "Speedway App Installer\Speedway App Installer.vdproj", "{A5D4009C-C180-496C-96CC-C64A610F5CA8}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{AE108088-35F3-47E1-A3EE-4E3AA3A53EBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{372940ED-F7BF-478B-AD13-439F2362B653}.Release|Any CPU.Build.0 = Release|Any CPU
 		{372940ED-F7BF-478B-AD13-439F2362B653}.Release|x86.ActiveCfg = Release|Any CPU
 		{372940ED-F7BF-478B-AD13-439F2362B653}.Release|x86.Build.0 = Release|Any CPU
-		{A5D4009C-C180-496C-96CC-C64A610F5CA8}.Debug|Any CPU.ActiveCfg = Debug
-		{A5D4009C-C180-496C-96CC-C64A610F5CA8}.Debug|x86.ActiveCfg = Debug
-		{A5D4009C-C180-496C-96CC-C64A610F5CA8}.Release|Any CPU.ActiveCfg = Release
-		{A5D4009C-C180-496C-96CC-C64A610F5CA8}.Release|x86.ActiveCfg = Release
+		{AE108088-35F3-47E1-A3EE-4E3AA3A53EBB}.Debug|Any CPU.ActiveCfg = Debug
+		{AE108088-35F3-47E1-A3EE-4E3AA3A53EBB}.Debug|x86.ActiveCfg = Debug
+		{AE108088-35F3-47E1-A3EE-4E3AA3A53EBB}.Release|Any CPU.ActiveCfg = Release
+		{AE108088-35F3-47E1-A3EE-4E3AA3A53EBB}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
